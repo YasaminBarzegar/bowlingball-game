@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class CameraFllow : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   public Transform ball; 
+    public Vector3 offset = new Vector3(0, 2, -5); 
+    public float smoothSpeed = 5f; 
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        
+        if (ball != null)
+        {
+            
+            Vector3 targetPosition = ball.position + offset;
+
+            transform.position = Vector3.Lerp(transform.position, targetPosition, smoothSpeed * Time.deltaTime);
+
+            transform.LookAt(ball.position);
+        }
     }
 }
